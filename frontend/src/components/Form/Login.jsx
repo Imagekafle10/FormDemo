@@ -3,7 +3,7 @@ import { Button, Checkbox, Form, Input, message, Select, Upload } from "antd";
 import { UploadOutlined, LoadingOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../api/auth.api";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -31,8 +31,7 @@ const Login = () => {
       }
 
       const res = await dispatch(loginUser(formData)).unwrap();
-      // console.log(res);
-      
+
       if (res) {
         navigate("/loginuser");
       }
@@ -43,77 +42,88 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-200 flex items-center justify-center ">
-      {/* Scrollable Container */}
-      <div className="bg-white shadow-2xl  w-[40vw]  h-[90vh] overflow-y-auto p-8">
-        <h2 className="text-2xl font-bold text-gray-700 mb-6 text-center">
+    <div className="min-h-screen bg-gray-200 flex items-center justify-center px-4 py-8">
+      {/* Responsive Container */}
+      <div className="bg-white shadow-2xl w-full max-w-2xl md:max-w-3xl lg:max-w-4xl h-auto md:h-[90vh] overflow-y-auto p-6 md:p-8 rounded-xl">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-700 mb-6 text-center">
           Create Account
         </h2>
 
-        <Form layout="vertical" onFinish={onFinish} disabled={loading} autoComplete="off">
-          <Form.Item
-            label="First Name"
-            name="firstname"
-            rules={[{ required: true, message: "Please input your first name!" }]}
-          >
-            <Input placeholder="John" className="rounded-lg" />
-          </Form.Item>
+        <Form
+          layout="vertical"
+          onFinish={onFinish}
+          disabled={loading}
+          autoComplete="off"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Form.Item
+              label="First Name"
+              name="firstname"
+              rules={[{ required: true, message: "Please input your first name!" }]}
+            >
+              <Input placeholder="John" className="rounded-lg" />
+            </Form.Item>
 
-          <Form.Item
-            label="Last Name"
-            name="lastname"
-            rules={[{ required: true, message: "Please input your last name!" }]}
-          >
-            <Input placeholder="Doe" className="rounded-lg" />
-          </Form.Item>
+            <Form.Item
+              label="Last Name"
+              name="lastname"
+              rules={[{ required: true, message: "Please input your last name!" }]}
+            >
+              <Input placeholder="Doe" className="rounded-lg" />
+            </Form.Item>
 
-          <Form.Item
-            label="Email"
-            name="email"
-            rules={[
-              { required: true, type: "email", message: "Please input your email!" },
-            ]}
-          >
-            <Input placeholder="example@mail.com" className="rounded-lg" />
-          </Form.Item>
+            <Form.Item
+              label="Email"
+              name="email"
+              rules={[
+                { required: true, type: "email", message: "Please input your email!" },
+              ]}
+            >
+              <Input placeholder="example@mail.com" className="rounded-lg" />
+            </Form.Item>
 
-          <Form.Item
-            label="Password"
-            name="password"
-            rules={[{ required: true, message: "Please input your password!" }]}
-          >
-            <Input.Password placeholder="********" className="rounded-lg" />
-          </Form.Item>
+            <Form.Item
+              label="Password"
+              name="password"
+              rules={[{ required: true, message: "Please input your password!" }]}
+            >
+              <Input.Password placeholder="********" className="rounded-lg" />
+            </Form.Item>
 
-          <Form.Item
-            label="Gender"
-            name="gender"
-            rules={[{ required: true, message: "Please select your gender!" }]}
-          >
-            <Select placeholder="Select gender" className="rounded-lg">
-              <Option value="Male">Male</Option>
-              <Option value="Female">Female</Option>
-              <Option value="Other">Other</Option>
-            </Select>
-          </Form.Item>
+            <Form.Item
+              label="Gender"
+              name="gender"
+              rules={[{ required: true, message: "Please select your gender!" }]}
+            >
+              <Select placeholder="Select gender" className="rounded-lg">
+                <Option value="Male">Male</Option>
+                <Option value="Female">Female</Option>
+                <Option value="Other">Other</Option>
+              </Select>
+            </Form.Item>
 
-          <Form.Item
-            label="Status"
-            name="status"
-            rules={[{ required: true, message: "Please select status!" }]}
-          >
-            <Select placeholder="Select status" className="rounded-lg">
-              <Option value="Active">Active</Option>
-              <Option value="Inactive">Inactive</Option>
-            </Select>
-          </Form.Item>
+            <Form.Item
+              label="Status"
+              name="status"
+              rules={[{ required: true, message: "Please select status!" }]}
+            >
+              <Select placeholder="Select status" className="rounded-lg">
+                <Option value="Active">Active</Option>
+                <Option value="Inactive">Inactive</Option>
+              </Select>
+            </Form.Item>
+          </div>
 
           <Form.Item
             label="Description"
             name="description"
             rules={[{ required: true, message: "Please enter description!" }]}
           >
-            <TextArea rows={4} placeholder="Tell us about yourself..." className="rounded-lg" />
+            <TextArea
+              rows={4}
+              placeholder="Tell us about yourself..."
+              className="rounded-lg"
+            />
           </Form.Item>
 
           <Form.Item
@@ -161,6 +171,13 @@ const Login = () => {
               )}
             </Button>
           </Form.Item>
+
+          <div className="text-center text-sm md:text-base">
+            Already have an account?{" "}
+            <Link to="/loginuser" className="text-blue-600 hover:underline">
+              Log In
+            </Link>
+          </div>
         </Form>
       </div>
     </div>
