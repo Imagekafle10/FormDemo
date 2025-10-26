@@ -131,9 +131,10 @@ export const loginController = async (req, res, next) => {
     res
       .status(200)
       .cookie("access_token", token, {
-        httpOnly: false,
-        secure: false,
-        maxAge: 24 * 60 * 60 * 1000, // 1 day in ms
+        httpOnly: true, // more secure
+        secure: process.env.NODE_ENV === "production", // true in prod
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // cross-site
+        maxAge: remember ? 7 * 24 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000, // 1 day or 7 days if remember
       })
       .json({
         success: true,

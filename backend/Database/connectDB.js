@@ -15,8 +15,6 @@ export async function getConn() {
       });
       console.log(`Sql Connected Sucessfull`.bgGreen);
     } catch (error) {
-      console.log(error);
-
       console.log(`Sql Connected UnSucessfull`.bgRed);
     }
   }
