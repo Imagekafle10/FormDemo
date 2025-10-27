@@ -10,7 +10,9 @@ import { Link } from "react-router-dom";
 const LoginUser = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const{loading} = useSelector((state)=>state.auth)
+    const{loading, isloggedIn} = useSelector((state)=>state.auth)
+    // console.log(isloggedIn);
+    
   const onFinish = async(values) => {
         
         const res = await dispatch(loginUserFetch(values)).unwrap();

@@ -14,8 +14,8 @@ const { Title, Paragraph } = Typography;
 
 const Container = () => {
 
-  const {loading ,user} = useSelector(state=>state.auth);
- console.log(user);
+  const {loading ,user,isloggedIn} = useSelector(state=>state.auth);
+ console.log(user,isloggedIn);
  
   return (loading && "Loading" ||
     <Layout>

@@ -7,6 +7,7 @@ const initialValues = {
   isSuccess: false,
   userInfo: null,
   user: [],
+  isloggedIn: false,
 };
 
 const authSlice = createSlice({
@@ -45,6 +46,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.isSuccess = true;
         state.userInfo = action.payload;
+        state.isloggedIn = true;
       })
       .addCase(loginUserFetch.rejected, (state) => {
         state.loading = false;
