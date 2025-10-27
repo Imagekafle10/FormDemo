@@ -17,8 +17,10 @@ const AppRoute = () => {
 <Routes>
   <Route path='/loginuser' element={<LoginUser />} />
 <Route path='/login' element={<Login />} />
+
 <Route element={<ProtectedLayout />}>
 <Route path='/' element ={<SharedLayout />}>
+
 <Route path='/dashboard' element={<DashBoard />} />
 <Route path='/portfolio' element={<Portfolio />} />
 <Route path='/profile' element={<Profile />} />
